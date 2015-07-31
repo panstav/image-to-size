@@ -1,26 +1,36 @@
 #! /usr/bin/env node
 
-var minimist =        require('minimist');
-var toSize =  require('./index');
+var extend = require('util')._extend;
+var minimist = require('minimist');
+var ims =  require('./image-to-size');
 
-// get those arguments aliased
+//-=======================================================---
+//------------------ Arguments
+//-=======================================================---
+
 var argv = minimist(process.argv.slice(2), {
 	alias: {
-		srcPath: 's',
-		dstPath: 'd',
-		toSize: 't'
+		'srcPath': 's',
+		'dstPath': 'd',
+		'toSize': 't'
 	}
 });
 
-var options = {
-	srcPath: './src/_MG_5843.jpg',
-	dstPath: './dest/_MG_5843.jpg',
-	toSize: 100,
-	height: 800
+var defaults = {
+	'srcPath': './src/_MG_5843.jpg',
+	'dstPath': './dest/_MG_5843.jpg',
+	'toSize': 100,
+	height: 800,
+	debug: false
 };
 
-// alright - optimize images
-toSize(options, function(err, result){
+var options = extend(defaults, argv);
+
+//-=======================================================---
+//------------------ Sending image to optimization
+//-=======================================================---
+
+ims(options, function(err, results){
 
 	if (err){
 		console.log(err);
@@ -28,9 +38,9 @@ toSize(options, function(err, result){
 		process.exit(1);
 	}
 
-	console.log('\u001b[32mGreat!\u001b[39m Images were optimized successfully.');
-	console.log(result);
+	console.log('\n\t\u001b[32mGreat!\u001b[39m Images were optimized successfully.');
+	console.log('\tFilesize:', results.filesize + 'KB', 'Quality:', results.quality, '\n');
 
 	process.exit(0);
-	
+
 });
