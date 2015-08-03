@@ -1,17 +1,25 @@
 {
-  "name": "image-tosize",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "image-to-size",
+  "version": "0.0.1",
+  "description": "Resize an image to a specified filesize -- WIP",
+  "main": "image-to-size.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "run": "node cli"
   },
   "preferGlobal": true,
+  "private": true,
   "bin": {
-    "image-tosize": "cli.js"
+    "image-to-size": "cli.js"
   },
-  "author": "",
+  "author": "Stav Pan Geffen <stavegeffen@gmail.com>",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/panstav/image-to-size"
+  },
+  "bugs": {
+    "url": "https://github.com/panstav/image-to-size/issues"
+  },
   "dependencies": {
     "async": "1.4.0",
     "imagemagick": "0.1.3",
